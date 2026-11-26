@@ -25,6 +25,9 @@ const MAX_UPLOAD_MB = 15;
 // ============ 数据安全：写入前自动备份，损坏自动恢复 ============
 const BACKUP_DIR = path.join(ROOT, 'backup');
 if (!fs.existsSync(BACKUP_DIR)) fs.mkdirSync(BACKUP_DIR, { recursive: true });
+// 全新部署环境自动建目录（uploads/results 不进代码库）
+if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+if (!fs.existsSync(RESULT_DIR)) fs.mkdirSync(RESULT_DIR, { recursive: true });
 const KEEP_BACKUPS = 10;
 function backupJson(file) {
   try {
