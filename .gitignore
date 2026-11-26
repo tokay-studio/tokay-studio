@@ -1,0 +1,13 @@
+# 运行时数据（部署环境自动生成，不进代码库）
+users.json
+tokens.json
+tasks.json
+config.json
+users.json.bak
+cards.json.bak
+server.log
+uploads/
+results/
+backup/
+node_modules/
+_workbuddy/

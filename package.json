@@ -1,0 +1,12 @@
+{
+  "name": "tokay-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TOKAY AI 工作台：一布成衣/视频/焕彩/生花/ASO-EBI/试衣/组合/名片",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

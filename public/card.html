@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOKAY 数字名片</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23B66D44'/%3E%3Ctext x='32' y='45' font-family='Microsoft YaHei,sans-serif' font-size='38' fill='%23ffffff' text-anchor='middle'%3ET%3C/text%3E%3C/svg%3E">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #faf9f6; color: #1a1917; -webkit-font-smoothing: antialiased; }
+  .hero { background: rgba(182,109,68,.92); color: #fff; padding: 42px 22px 34px; }
+  .hero .brand-line { font-size: 10px; letter-spacing: .4em; color: #c9a962; margin-bottom: 22px; }
+  .hero .top { display: flex; align-items: center; gap: 18px; }
+  .avatar { width: 84px; height: 84px; border-radius: 2px; border: 1px solid rgba(221,188,125,.6); object-fit: cover; background: rgba(255,255,255,.08); flex-shrink: 0; }
+  .avatar-ph { width: 84px; height: 84px; border-radius: 2px; background: rgba(255,255,255,.08); border: 1px solid rgba(221,188,125,.6); display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 500; flex-shrink: 0; font-family: 'Microsoft YaHei', sans-serif; color: #ddbc7d; }
+  .hero h1 { font-size: 22px; font-weight: 500; font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; letter-spacing: .06em; color: #f2ecdd; }
+  .hero .role { font-size: 12.5px; color: #b8b2a6; margin-top: 6px; letter-spacing: .08em; }
+  .hero .slogan { margin-top: 18px; font-size: 13px; color: #d6c49a; line-height: 1.8; border-left: 2px solid #c9a962; padding-left: 12px; font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; }
+  .contacts { background: #fff; margin: 18px 16px 0; border: 1px solid #e9e6df; border-radius: 4px; box-shadow: 0 1px 2px rgba(28,27,25,.04); padding: 4px 18px; }
+  .contacts a { display: flex; align-items: center; gap: 12px; padding: 14px 0; color: #1a1917; text-decoration: none; font-size: 14px; border-bottom: 1px solid #f0eee8; }
+  .contacts a:last-child { border-bottom: none; }
+  .contacts a:active { background: #faf9f5; }
+  .contacts .ic { font-size: 12px; color: #a8894e; letter-spacing: .08em; min-width: 58px; }
+  .section { margin: 26px 16px 0; }
+  .section h2 { font-size: 15px; font-weight: 500; margin-bottom: 14px; font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; letter-spacing: .14em; color: #14120f; display: flex; align-items: center; gap: 10px; }
+  .section h2::after { content: ""; flex: 1; height: 1px; background: #e9e6df; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+  .prod { background: #fff; border: 1px solid #e9e6df; border-radius: 4px; overflow: hidden; }
+  .prod img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; background: #edebe5; }
+  .prod .info { padding: 12px 14px; }
+  .prod .name { font-size: 14px; font-weight: 600; letter-spacing: .04em; color: #14120f; }
+  .prod .code { font-size: 11.5px; color: #a8894e; margin-top: 4px; letter-spacing: .08em; }
+  .prod .desc { font-size: 12px; color: #8d887c; margin-top: 6px; line-height: 1.6; }
+  .empty { color: #8d887c; font-size: 13px; text-align: center; padding: 34px 0; letter-spacing: .06em; }
+  .foot { text-align: center; color: #b6b0a3; font-size: 11px; letter-spacing: .28em; padding: 34px 0 38px; }
+  .foot .rule { width: 36px; height: 1px; background: #a8894e; margin: 0 auto 14px; }
+  .addr { margin: 14px 16px 0; background: #fff; border: 1px solid #e9e6df; border-radius: 4px; padding: 14px 18px; font-size: 13px; color: #4a4740; line-height: 1.7; }
+  .addr .lbl { font-size: 11px; color: #a8894e; letter-spacing: .2em; display: block; margin-bottom: 4px; }
+
+  /* ===== TOKAY 液态玻璃风（后加载覆盖） ===== */
+  :root{--copper:#B66D44;--peach:#E4C0A6;--rose:#D488AC;--apricot:#EBD7CC;
+    --glass:rgba(255,255,255,.55);--stroke:rgba(255,255,255,.7);--ink:#3b2b2e;--sub:#6d5a60;--muted:#8c7980;
+    --gshadow:0 10px 30px rgba(122,80,96,.14),inset 0 1px 0 rgba(255,255,255,.85)}
+  body{font-family:'Microsoft YaHei','PingFang SC','Source Han Sans SC',sans-serif;color:var(--ink);
+    background:
+      radial-gradient(60% 45% at 12% 6%,var(--peach) 0%,rgba(228,192,166,0) 70%),
+      radial-gradient(55% 50% at 52% 45%,var(--rose) 0%,rgba(212,136,172,0) 72%),
+      radial-gradient(70% 50% at 85% 100%,var(--apricot) 0%,rgba(235,215,204,0) 75%),
+      linear-gradient(160deg,#f3ded0 0%,#e9c9cf 45%,#f0e0d8 100%);
+    background-attachment:fixed;min-height:100vh;padding-bottom:20px}
+  .hero{position:relative;overflow:hidden;background:var(--glass);backdrop-filter:blur(22px) saturate(1.5);
+    -webkit-backdrop-filter:blur(22px) saturate(1.5);border-bottom:1px solid var(--stroke);
+    box-shadow:var(--gshadow);color:var(--ink);padding:38px 22px 30px;border-radius:0 0 24px 24px}
+  .hero::before{content:'';position:absolute;width:340px;height:340px;right:-120px;top:-160px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,255,255,.75),rgba(255,255,255,0) 68%);pointer-events:none}
+  .brand-line{color:var(--copper)!important;letter-spacing:.34em}
+  .avatar,.avatar-ph{border-radius:16px!important;border:1px solid var(--stroke)!important;mix-blend-mode:multiply}
+  .avatar-ph{background:rgba(255,255,255,.5)!important;color:var(--copper)!important;font-family:var(--mono)!important}
+  .hero h1{font-family:inherit;font-size:22px;font-weight:800;color:var(--ink)!important;letter-spacing:.02em}
+  .hero .role{color:var(--sub)!important;font-weight:600}
+  .hero .slogan{color:var(--sub)!important;border-left:2px solid var(--copper)!important;font-family:inherit}
+  .contacts{background:var(--glass)!important;backdrop-filter:blur(22px) saturate(1.5);-webkit-backdrop-filter:blur(22px) saturate(1.5);
+    border:1px solid var(--stroke)!important;border-radius:20px!important;box-shadow:var(--gshadow)!important;
+    background-clip:padding-box}
+  .contacts a{color:var(--ink)!important;border-bottom-color:rgba(255,255,255,.55)!important;font-weight:600}
+  .contacts .ic{color:var(--copper)!important}
+  .addr{background:var(--glass)!important;backdrop-filter:blur(18px);border:1px solid var(--stroke)!important;
+    border-radius:18px!important;box-shadow:var(--gshadow)!important;color:var(--sub)!important}
+  .addr .lbl{color:var(--copper)!important}
+  .section h2{font-family:inherit;font-weight:800;color:var(--ink)!important;letter-spacing:.04em}
+  .section h2::after{background:rgba(255,255,255,.7)!important;height:1px}
+  .prod{background:var(--glass)!important;backdrop-filter:blur(18px);border:1px solid var(--stroke)!important;
+    border-radius:18px!important;box-shadow:var(--gshadow)!important}
+  .prod img{border-radius:0}
+  .prod .name{color:var(--ink)!important}
+  .prod .code{color:var(--copper)!important}
+  .prod .desc{color:var(--sub)!important}
+  .empty{color:var(--muted)!important}
+  .foot{color:var(--muted)!important}
+  .foot .rule{background:var(--copper)!important}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="brand-line">TOKAY LACE</div>
+  <div class="top">
+    <div id="avatarBox"></div>
+    <div>
+      <h1 id="cName">加载中…</h1>
+      <div class="role" id="cRole"></div>
+    </div>
+  </div>
+  <div class="slogan" id="cSlogan" style="display:none"></div>
+</div>
+<div class="contacts" id="contactBox"></div>
+<div class="addr" id="addrBox" style="display:none"><span class="lbl">ADDRESS</span><span id="addrText"></span></div>
+<div class="section">
+  <h2>产品目录大纲</h2>
+  <div class="grid" id="prodGrid"></div>
+  <div class="empty" id="prodEmpty" style="display:none">产品目录整理中，敬请期待</div>
+</div>
+<div class="foot"><div class="rule"></div>TOKAY LACE · 数字名片</div>
+<script>
+async function loadCard() {
+  const id = location.pathname.split('/').pop();
+  try {
+    const res = await fetch('/api/card/' + id);
+    const c = await res.json();
+    if (c.error) { document.body.innerHTML = '<div style="text-align:center;padding:80px 20px;color:#8d887c">' + c.error + '</div>'; return; }
+    const p = c.profile || {};
+    document.title = (p.name || '名片') + ' · ' + (p.company || 'TOKAY');
+    document.getElementById('cName').textContent = p.name || '';
+    document.getElementById('cRole').textContent = [p.title, p.company].filter(Boolean).join(' · ');
+    const ab = document.getElementById('avatarBox');
+    if (p.avatar) ab.innerHTML = '<img class="avatar" src="/files/' + p.avatar.replace(/^\//, '') + '" onerror="this.style.display=\'none\'">';
+    else ab.innerHTML = '<div class="avatar-ph">' + (p.name || 'T').charAt(0).toUpperCase() + '</div>';
+    const sl = document.getElementById('cSlogan');
+    if (p.slogan) { sl.style.display = 'block'; sl.textContent = '"' + p.slogan + '"'; }
+    const items = [];
+    if (p.phone) items.push(['电话', 'tel:' + p.phone.replace(/\s/g, ''), p.phone]);
+    if (p.whatsapp) items.push(['WhatsApp', 'https://wa.me/' + p.whatsapp.replace(/[^\d]/g, ''), p.whatsapp]);
+    if (p.email) items.push(['邮箱', 'mailto:' + p.email, p.email]);
+    document.getElementById('contactBox').innerHTML = items.map((it) =>
+      '<a href="' + it[1] + '" target="_blank" rel="noopener"><span class="ic">' + it[0] + '</span>' + it[2] + '</a>'
+    ).join('');
+    if (p.address) { const a = document.getElementById('addrBox'); a.style.display = 'block'; document.getElementById('addrText').textContent = p.address; }
+    const grid = document.getElementById('prodGrid');
+    const prods = c.products || [];
+    if (prods.length) {
+      grid.innerHTML = prods.map((r) =>
+        '<div class="prod">' +
+        (r.imagePath ? '<img src="/files/' + r.imagePath.replace(/^\//, '') + '" loading="lazy" alt="' + (r.name || '') + '">' : '<img src="" style="visibility:hidden">') +
+        '<div class="info"><div class="name">' + (r.name || '') + '</div>' +
+        (r.code ? '<div class="code">' + r.code + '</div>' : '') +
+        (r.desc ? '<div class="desc">' + r.desc + '</div>' : '') +
+        '</div></div>'
+      ).join('');
+    } else {
+      document.getElementById('prodEmpty').style.display = 'block';
+    }
+  } catch (e) {
+    document.body.innerHTML = '<div style="text-align:center;padding:80px 20px;color:#8d887c">名片加载失败，请稍后再试</div>';
+  }
+}
+loadCard();
+</script>
+</body>
+</html>
