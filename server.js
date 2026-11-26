@@ -1187,6 +1187,9 @@ const server = http.createServer(async (req, res) => {
     // CORS 不开放：仅同源使用
     if (req.method === 'OPTIONS') { res.writeHead(204); return res.end(); }
 
+    // 健康检查（Koyeb/Render 等平台探活用，无需登录）
+    if (p === '/api/health') return sendJson(res, 200, { ok: true, time: new Date().toISOString() });
+
     // ---- 账号接口：注册 / 登录 / 登出 / 我的信息 / 资料 ----
     if (p === '/api/auth/register' && req.method === 'POST') {
       const body = await readJson(req);
@@ -2000,9 +2003,6 @@ const server = http.createServer(async (req, res) => {
     try { sendJson(res, 500, { error: err.message }); } catch {}
   }
 });
-
-// 健康检查（Koyeb/Render 等平台探活用）
-if (p === '/api/health') return sendJson(res, 200, { ok: true, time: new Date().toISOString() });
 
 server.listen(PORT, '0.0.0.0', () => {
   console.log('TOKAY 图生衣工作台已启动: http://localhost:' + PORT);
